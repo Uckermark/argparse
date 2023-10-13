@@ -20,5 +20,11 @@ struct CommandLine: CommandLineArguments {
         print(self.flag1 ? "flag1 = true" : "flag1 = false")
         print(self.flag2 ? "flag2 = true" : "flag2 = false")
     }
+
+    func validate() throws {
+        if arg1 == arg2 {
+            throw ArgParseError.externalError("Validation failed")
+        }
+    }
 }
 CommandLine.main()

@@ -108,6 +108,12 @@ public extension CommandLineArguments {
         var args: Self = parseCommandLine(Self())
         do {
             try args.validate()
+        } catch {
+            print("ERROR: \(error.localizedDescription)\n")
+            print(getHelp(Self()))
+            exit(1)
+        }
+        do {
             try args.run()
         } catch {
             print("ERROR: \(error.localizedDescription)")
