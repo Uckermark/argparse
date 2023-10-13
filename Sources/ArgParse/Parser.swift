@@ -91,24 +91,32 @@ public protocol CommandLineArguments: Codable {
     ///
     /// - Throws: An error if there is an issue during execution.
     mutating func run() throws
+
+
+    func validate() throws
     
     /// Initializes a new instance of the conforming type.
     init()
 }
 
-extension CommandLineArguments {
+public extension CommandLineArguments {
     /// The default entry point for the command-line tool.
     ///
     /// This function initializes an instance of the conforming type, parses command-line arguments into it,
     /// and then invokes the `run` method to execute the main logic of the tool.
-    public static func main() {
+    static func main() {
         var args: Self = parseCommandLine(Self())
         do {
+            try args.validate()
             try args.run()
         } catch {
             print("ERROR: \(error.localizedDescription)")
             exit(2)
         }
+    }
+
+    func validate() throws {
+        return
     }
 }
 

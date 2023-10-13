@@ -30,6 +30,10 @@ enum Name {
     case .short(_ name: Character)
     case .long(_ name: String)
 }
+
+enum ArgParseError: LocalizedError {
+    case externalError(_ error: String)
+}
 ```
 
 ### Example Usage
@@ -57,6 +61,15 @@ struct MyCommandLineTool: CommandLineArguments {
     // Implement the 'run' method to define the main logic of your tool.
     mutating public func run() throws {
         // Your code to process the command-line arguments and flags goes here.
+        if arg1 == arg2 {
+            throw ArgParseError.externalError("Validation failed") // use .externalError to show help if validation failed
+        }
+    }
+
+    // Optional: Validate the parsed arguments by your own criteria
+    // This will be executed before 'run'
+    func validate throws {
+        // Validate command-line arguments
     }
 }
 MyCommandLineTool.main()

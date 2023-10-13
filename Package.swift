@@ -2,7 +2,7 @@
 
 import PackageDescription
 
-let package = Package(
+let package: Package = Package(
     name: "ArgParse",
     products: [
         .library(
