@@ -5,14 +5,13 @@ import Foundation
 /// - Parameters:
 ///   - arguments: The struct to be parsed. It must conform to the CommandLineArguments protocol.
 /// - Returns: A parsed struct of the same type as the parameter.
-internal func _parseCommandLine<T: CommandLineArguments>(_ arguments: T) throws -> T {
+internal func _parseCommandLine<T: CommandLineArguments>(_ arguments: T, with args: [String] = Array(CommandLine.arguments.dropFirst())) throws -> T {
     // Initialize the command line arguments array
-    var commandLine: [String] = Array(CommandLine.arguments.dropFirst())
+    var commandLine: [String] = args
     
     // Check if "-h" flag is present, and print help information if found
     if commandLine.contains("-h") {
-        print(getHelp(arguments))
-        exit(0)
+        throw ArgParseControlError.showHelp
     }
     
     // Initialize a dictionary to store parsed arguments and flags
@@ -71,6 +70,12 @@ internal func _parseCommandLine<T: CommandLineArguments>(_ arguments: T) throws 
 public func parseCommandLine<T: CommandLineArguments>(_ arguments: T) -> T {
     do {
         return try _parseCommandLine(arguments)
+    } catch let error as ArgParseControlError {
+        switch error {
+            case .showHelp:
+                print(getHelp(arguments))
+                exit(0)
+        }
     } catch {
         // Print error message and help information in case of an error
         print("ERROR: \(error.localizedDescription)\n")

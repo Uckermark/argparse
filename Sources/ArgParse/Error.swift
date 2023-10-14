@@ -43,3 +43,7 @@ extension ArgParseError {
         }
     }
 }
+
+internal enum ArgParseControlError: LocalizedError {
+    case showHelp
+}

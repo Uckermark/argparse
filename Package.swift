@@ -10,15 +10,25 @@ let package: Package = Package(
             targets: ["ArgParse"]),
     ],
     targets: [
+        // Core library
+        .target(
+            name: "ArgParse",
+            dependencies: [],
+            path: "Sources/ArgParse"
+        ),
+
+        // Example
         .executableTarget(
             name: "ArgParseTool",
             dependencies: ["ArgParse"],
             path: "Sources/ArgParseTool"
         ),
-        .target(
-            name: "ArgParse",
-            dependencies: [],
-            path: "Sources/ArgParse"
+
+        // Tests
+        .testTarget(
+            name: "ArgParseTests",
+            dependencies: ["ArgParse"],
+            path: "Tests"
         )
     ]
 )
