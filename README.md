@@ -1,6 +1,5 @@
 # ArgParse - A Lightweight Command-Line Argument Parser for Swift
 
-## Overview
 ArgParse is a lightweight command-line argument parser for Swift, designed to simplify the process of parsing arguments and flags directly into a Swift struct. It offers an alternative to the more extensive ArgumentParser library, making it easier to create command-line tools with minimal configuration.
 
 ## Features
