@@ -1,13 +1,14 @@
-# ArgParse - A Lightweight Command-Line Argument Parser for Swift
+# ArgParse - A Lightweight Command-Line Argument Parser
 
-ArgParse is a lightweight command-line argument parser for Swift, designed to simplify the process of parsing arguments and flags directly into a Swift struct. It offers an alternative to the more extensive ArgumentParser library, making it easier to create command-line tools with minimal configuration.
+ArgParse is a lightweight command-line argument parser, designed to simplify the process of parsing arguments directly into a struct. It offers an alternative to the more extensive [ArgumentParser](https://github.com/apple/swift-argument-parser).
+
+ArgParse parses the command-line arguments, instantiates your command type, and then either executes your `run()` method or exits with a useful message.
 
 ## Features
-- Parse command-line arguments and flags directly into a Swift struct.
-- The Flag property wrapper toggles a Bool value if the flag is passed.
-- The Argument property wrapper initializes a required String value.
+- Parse command-line arguments and flags directly into a struct.
+- The `@Flag` property wrapper toggles a Bool value if the flag is passed.
+- The `@Argument` property wrapper initializes a required String value.
 - Automatically generates usage information and a help table for your command-line tool.
-- Enforces valid user input, providing error handling for unexpected input.
 
 ## Important Notes
 - ArgParse is in beta development, and as such, it may contain undiscovered bugs. Use it with caution in production environments.
